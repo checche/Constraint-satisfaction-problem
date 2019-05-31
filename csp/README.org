@@ -1,0 +1,37 @@
+バックトラック法,180x217x,平田恭嘉
+Description:
++ 処理系が受付可能な制約 (BNFで受付言語を書くとなお良い)
+整数定数
+足し算
+掛け算
+
+=
+≠
+≧
+>
+AllDifferent
+
+Term ::=
+    Integer |
+    IntegerVariableName |
+    (add Term*) | (+ Term*) |
+    (mul Term Term) | (* Term Term)
+
+AtomicFormula ::=
+        (eq Term Term) | (= Term Term) |
+        (ne Term Term) | (!= Term Term) |
+        (ge Term Term) | (>= Term Term) |
+        (gt Term Term) | (> Term Term) |
+        AllDifferentConstraint
+
+AllDifferentConstraint ::=
+        "(alldifferent" Term*")" |
+        "(alldifferent" (Term*"))"
+
++ 処理系で工夫した点 (変数順序，値割当ての順序, 実装など)
+Numの実装に苦戦しました.
+Sugarで定義されたとおりに実装をおこなった.
+授業で習った部分に関してコードにできるだけコメントを残すことで
+CSPの理解に役立てた.
+ドメインの小さいものから値を割り当てることで計算時間削減が見込まれる.
+数独についてはすべての変数のドメインの大きさが同じなので改善できなかった.
